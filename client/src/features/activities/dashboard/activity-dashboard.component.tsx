@@ -15,7 +15,6 @@ interface Props {
     createActivity: (x: IActivity) => void,
     editActivity: (x: IActivity) => void,
     deleteActivity: (id: string) => void
-    //test changeset
 }
 
 export const ActivityDashboard: React.FC<Props> = ({ activities, selectActivity, selectedActivity, editMode, setEditMode, setSelectedActivity, createActivity, editActivity, deleteActivity }) => {
