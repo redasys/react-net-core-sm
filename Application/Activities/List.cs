@@ -5,6 +5,7 @@ using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using System.Linq;
 
 namespace Application.Activities
 {
@@ -22,7 +23,7 @@ namespace Application.Activities
             }
             public async Task<List<Activity>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var activities = await _context.Activities.ToListAsync(cancellationToken);
+                var activities = await _context.Activities.OrderBy(x => x.Date).ToListAsync(cancellationToken);
                 return activities;
             }
         }
