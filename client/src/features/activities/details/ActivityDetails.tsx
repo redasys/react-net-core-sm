@@ -19,7 +19,7 @@ const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   const {
     activity,
     loadActivity,
-    loadingInitial
+    loadingInitial    
   } = activityStore;
 
   useEffect(() => {

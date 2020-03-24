@@ -25,12 +25,16 @@ class ActivityStore {
       (a, b) => Date.parse(a.date) - Date.parse(b.date)
     );
 
-    return Object.entries(sortedActivities.reduce((activities, activity)=>{
-      const date = activity.date.split('T')[0];
-      activities[date] = activities[date] ? [...activities[date],activity] : [activity];
-      return activities;
-    }, {} as {[key:string]: IActivity[]}));
-  };
+    return Object.entries(
+      sortedActivities.reduce((activities, activity) => {
+        const date = activity.date.split("T")[0];
+        activities[date] = activities[date]
+          ? [...activities[date], activity]
+          : [activity];
+        return activities;
+      }, {} as { [key: string]: IActivity[] })
+    );
+  }
 
   @action loadActivities = async () => {
     this.loadingInitial = true;
@@ -42,7 +46,6 @@ class ActivityStore {
           this.activityRegistry.set(activity.id, activity);
         });
       });
-      console.log(this.groupActivitiesByDate(activities));
     } catch (error) {
       runInAction("load activities error", () => {
         this.loadingInitial = false;
@@ -64,7 +67,7 @@ class ActivityStore {
           this.activity = activity;
         });
       } catch (error) {
-        console.error(error);
+        console.log(error);
       } finally {
         runInAction("clean up", () => (this.loadingInitial = false));
       }
