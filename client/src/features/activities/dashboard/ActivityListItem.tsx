@@ -17,7 +17,7 @@ export const ActivityListItem: React.FC<{ activity: IActivity }> = ({
             <Item.Image size="tiny" circular src="/assets/user.png" />
             <Item.Content>
               <Item.Header as="a">{activity.title}</Item.Header>
-              <Item.Description>Hosted by Rufus</Item.Description>
+              <Item.Description>Hosted by Lissa</Item.Description>
               <Item.Extra>
                 <Label basic content={activity.category} />
               </Item.Extra>

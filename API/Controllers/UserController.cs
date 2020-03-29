@@ -26,9 +26,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<User>> CurrentUser(CurrentUser.Query query)
+        public async Task<ActionResult<User>> CurrentUser()
         {
-            return await Mediator.Send(query);
+            return await Mediator.Send(new CurrentUser.Query());
         }
     }
 }
