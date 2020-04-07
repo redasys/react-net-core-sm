@@ -3,21 +3,47 @@ import { Item, Button, Label, Segment, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 // import ActivityStore from "../../../app/stores/activityStore";
 import { IActivity } from "../../../app/models/activity";
-import {format} from 'date-fns'; 
-
+import { format } from "date-fns";
+import ActivityListItemAttendees from "./ActivityListItemAttendees";
 
 export const ActivityListItem: React.FC<{ activity: IActivity }> = ({
-  activity
+  activity,
 }) => {
   return (
     <Segment.Group>
       <Segment>
         <Item.Group>
           <Item>
-            <Item.Image size="tiny" circular src="/assets/user.png" />
+            <Item.Image
+              size="tiny"
+              circular
+              src={activity.host.image || "/assets/user.png"}
+            />
             <Item.Content>
-              <Item.Header as="a">{activity.title}</Item.Header>
-              <Item.Description>Hosted by Lissa</Item.Description>
+              <Item.Header as={Link} to={`/assbook/${activity.id}`}>
+                {activity.title}
+              </Item.Header>
+              <Item.Description>
+                Hosted by {activity.host.displayName}
+              </Item.Description>
+              <Item.Description>
+                {activity.isHost && (
+                  <Label
+                    basic
+                    color="orange"
+                    content="You are hosting this event"
+                  />
+                )}
+              </Item.Description>
+              <Item.Description>
+                {!activity.isHost && activity.isGoing && (
+                  <Label
+                    basic
+                    color="green"
+                    content="You are attending this event"
+                  />
+                )}
+              </Item.Description>
               <Item.Extra>
                 <Label basic content={activity.category} />
               </Item.Extra>
@@ -27,12 +53,14 @@ export const ActivityListItem: React.FC<{ activity: IActivity }> = ({
       </Segment>
       <Segment>
         <Icon name="clock" />
-        {format(activity.date, 'h:mm a')}
+        {format(activity.date, "h:mm a")}
         <Icon name="marker" />
         {activity.venue}, &nbsp;{activity.city}
       </Segment>
-      <Segment secondary>Attendies go here</Segment>
-      <Segment clearing>
+      <Segment secondary>
+        <ActivityListItemAttendees attendees={activity.attendees} />
+      </Segment>
+      <Segment>
         <span>{activity.description}</span>
         <Button
           as={Link}

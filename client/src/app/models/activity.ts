@@ -1,3 +1,5 @@
+import { Attendee } from './Attendee';
+
 export interface IActivity {
   id: string;
   title: string;
@@ -6,6 +8,10 @@ export interface IActivity {
   date: Date;
   city: string;
   venue: string;
+  isGoing: boolean;
+  isHost: boolean;
+  host: Attendee;
+  attendees: Attendee[];
 }
 
 export interface IActivityFormValues extends Partial<IActivity> {
