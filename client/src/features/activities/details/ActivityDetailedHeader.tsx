@@ -22,9 +22,9 @@ const activityImageTextStyle = {
 const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({
   activity,
 }) => {
-  const rootStore =  useContext(RootStoreContext);
-  const {attendActivity, unAttendActivity} = rootStore.activityStore;
-  
+  const rootStore = useContext(RootStoreContext);
+  const { attendActivity, unAttendActivity } = rootStore.activityStore;
+
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
@@ -44,7 +44,10 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({
                 />
                 <p>{format(activity.date, "eeee MMMM do")}</p>
                 <p>
-                  Hosted by <strong>{activity.host.displayName}</strong>
+                  Hosted by{" "}
+                  <Link to={`/profile/${activity.host.userName}`}>
+                    <strong> {activity.host.displayName} </strong>
+                  </Link>
                 </p>
               </Item.Content>
             </Item>
@@ -52,7 +55,7 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({
         </Segment>
       </Segment>
       <Segment clearing attached="bottom">
-      {activity.isHost ? (
+        {activity.isHost ? (
           <Button
             as={Link}
             to={`/edit/${activity.id}`}
@@ -61,12 +64,13 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({
           >
             Manage Event
           </Button>
-        ): activity.isGoing?(
-        <Button 
-        onClick={()=>unAttendActivity()}>Cancel attendance</Button>):
-        (<Button
-         onClick={()=>attendActivity()} 
-         color="teal">Join Activity</Button>)}
+        ) : activity.isGoing ? (
+          <Button onClick={() => unAttendActivity()}>Cancel attendance</Button>
+        ) : (
+          <Button onClick={() => attendActivity()} color="teal">
+            Join Activity
+          </Button>
+        )}
       </Segment>
     </Segment.Group>
   );

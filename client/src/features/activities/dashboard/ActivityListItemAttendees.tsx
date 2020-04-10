@@ -13,7 +13,7 @@ const ActivityListItemAttendees: React.FC<Props> = ({ attendees }) => {
         <List.Item key={attendee.userName}>
           <Popup
             header={attendee.displayName}
-            trigger={<Image size="mini" circular src={"/assets/user.png"} />}
+            trigger={<Image size="mini" circular src={attendee.image || "/assets/user.png"} />}
           />
         </List.Item>
       ))}

@@ -3,6 +3,7 @@ export interface IUser {
     token: string;
     userName: string;
     imageUrl: string;
+    
 }
 
 export interface UserFormValues {
