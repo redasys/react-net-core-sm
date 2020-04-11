@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Tab, Header, Card, Image, Button, Grid } from "semantic-ui-react";
 import { RootStoreContext } from "../../app/stores/rootStore";
 import PhotoUpload from "../../app/common/photoUpload/photoUpload";
+import { observer } from "mobx-react-lite";
 
 const ProfilePhotos = () => {
   const rootStore = useContext(RootStoreContext);
@@ -9,6 +10,7 @@ const ProfilePhotos = () => {
     profile,
     isCurrentUser,
     loading,
+    uploading,
     uploadPhoto,
     setMainPhoto,
     deletePhoto,
@@ -38,7 +40,7 @@ const ProfilePhotos = () => {
         <Grid.Column width={16}>
           {addPhotoMode ? (
             <PhotoUpload
-              loading={loading}
+              loading={uploading}
               uploadPhoto={uploadPhoto}
               setAddPhotoMode={setAddPhotoMode}
             />
@@ -48,8 +50,8 @@ const ProfilePhotos = () => {
                 profile.photos.map((x) => (
                   <Card key={x.id}>
                     <Image src={x.url} />
-                    {isCurrentUser && (
-                      <Button.Group fluid widths={2}>
+                    {isCurrentUser && !x.isMain && (
+                      <Button.Group fluid widths={2}>                         
                         <Button
                           onClick={(e) => {
                             setMainPhoto(x);
@@ -57,7 +59,7 @@ const ProfilePhotos = () => {
                           }}
                           name={x.id}
                           disabled={x.isMain}
-                          loading={loading && target === x.id}
+                          loading={uploading && target === x.id}
                           basic
                           positive
                           content="Main"
@@ -69,7 +71,7 @@ const ProfilePhotos = () => {
                             deletePhoto(x);
                             setDeleteTarget(e.currentTarget.name);
                           }}
-                          loading={loading && deleteTarget === x.id}
+                          loading={uploading && deleteTarget === x.id}
                           basic
                           negative
                           icon="trash"
@@ -86,4 +88,4 @@ const ProfilePhotos = () => {
   );
 };
 
-export default ProfilePhotos;
+export default observer(ProfilePhotos);
