@@ -16,8 +16,8 @@ const ProfileContent = () => {
         <Tab 
         menu={{fluid: true, vertical: true}}
         menuPosition='right'
-        panes={panes}
-        activeIndex={0} />
+        panes={panes}        
+        />
     )
 
 }

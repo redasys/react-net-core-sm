@@ -7,7 +7,7 @@ import UpdateForm from "./updateForm";
 
 const ProfileAbout = () => {
   const rootStore = useContext(RootStoreContext);
-  const { profile, isCurrentUser, loading, updateProfile } = rootStore.profileStore;
+  const { profile, isCurrentUser, uploading, updateProfile } = rootStore.profileStore;
 
   const [editMode, setEditMode] = useState(false);
 
@@ -29,7 +29,7 @@ const ProfileAbout = () => {
         </Grid.Column>
         <Grid.Column width={16}>
           {profile && editMode ? (
-            <UpdateForm profile={profile!} submitting={loading} setEditMode={setEditMode} update={updateProfile} />
+            <UpdateForm profile={profile!} submitting={uploading} setEditMode={setEditMode} update={updateProfile} />
           ) : (
             <Segment>
               <Header>{profile!.displayName}</Header>
