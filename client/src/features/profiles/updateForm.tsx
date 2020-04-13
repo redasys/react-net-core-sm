@@ -1,6 +1,6 @@
 import React from "react";
 import Profile from "../../app/models/profile";
-import { Form, TextArea, Button } from "semantic-ui-react";
+import { Form, Button } from "semantic-ui-react";
 import { Form as FinalForm, Field } from "react-final-form";
 import TextAreaInput from "../../app/common/form/TextAreaInput";
 import TextInput from "../../app/common/form/TextInput";

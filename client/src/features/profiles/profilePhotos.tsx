@@ -9,7 +9,6 @@ const ProfilePhotos = () => {
   const {
     profile,
     isCurrentUser,
-    loading,
     uploading,
     uploadPhoto,
     setMainPhoto,

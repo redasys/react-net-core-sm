@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
-import PropTypes from "prop-types";
 import { RootStoreContext } from "../../app/stores/rootStore";
-import { Card, Grid, Tab, Header, Button, Segment } from "semantic-ui-react";
+import { Grid, Tab, Header, Button, Segment } from "semantic-ui-react";
 import { observer } from "mobx-react-lite";
 import UpdateForm from "./updateForm";
 
