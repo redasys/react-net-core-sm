@@ -1,4 +1,5 @@
 import { Attendee } from './Attendee';
+import IComment from './comment';
 
 export interface IActivity {
   id: string;
@@ -12,6 +13,7 @@ export interface IActivity {
   isHost: boolean;
   host: Attendee;
   attendees: Attendee[];
+  comments: IComment[]
 }
 
 export interface IActivityFormValues extends Partial<IActivity> {
