@@ -9,8 +9,7 @@ namespace Domain
         public Guid ActivityId { get; set; }
         public virtual Activity Activity { get; set; }
         public bool IsHost { get; set; }
-        public DateTime DateJoined { get; set; }
-        
+        public DateTime DateJoined { get; set; }      
 
     }
 }

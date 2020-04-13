@@ -96,4 +96,21 @@ export default class ProfileStore {
       });
     }
   };
+
+  @action updateProfile = async(profile: Profile)=>{
+    this.loading=true;
+    profile.id = this.rootStore.userStore.user!.id;
+    try {      
+      await agent.Profiles.editProfile(profile);
+      runInAction(()=>{
+        this.profile=profile;
+      })
+    } catch (error) {
+      toast.error(error.message);
+    }finally{
+      runInAction(()=>{
+        this.loading=false;
+      })
+    }
+  }
 }

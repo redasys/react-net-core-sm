@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Net;
 using System.Threading;
@@ -54,10 +55,11 @@ namespace Application.User
 
                     return new User
                     {
+                        Id = user.Id,
                         DisplayName = user.DisplayName,
                         UserName = user.UserName,
-                        ImageUrl = user.Photos.FirstOrDefault(x=>x.IsMain)?.Url,
-                        Token = _jwtGenerator.CreateToken(user)                        
+                        ImageUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
+                        Token = _jwtGenerator.CreateToken(user)
                     };
                 }
 
